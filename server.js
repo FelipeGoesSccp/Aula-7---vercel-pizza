@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
-
 const app = express();
 
 app.use(cors());
@@ -15,10 +14,11 @@ app.get('/', (req, res) => {
 
 const rotasCategorias = require('./routes/categorias');
 const rotasProdutos = require('./routes/produtos');
+const rotasPedidos = require('./routes/pedidos');
 
 app.use('/api/categorias', rotasCategorias);
 app.use('/api/produtos', rotasProdutos);
-
+app.use('/api/pedidos', rotasPedidos);
 app.use((req, res, next) => {
     res.status(404).json({ mensagem: "Rota não encontrada na API da Goes Pizzaria!" });
 });
